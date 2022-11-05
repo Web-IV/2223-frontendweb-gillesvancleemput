@@ -5,11 +5,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import {Link} from "react-router-dom";
 
 
+
 const navigationbar = () => {
     return ( 
         <Navbar className='navbar navbar-expand-lg   .bg-transparent' >
         <Container>
           <Navbar.Brand as={Link} to="/">Navbar</Navbar.Brand>
+          <img src="../images/SinSin_elementen.png" alt="" width="100" height="100" />
           <Nav >
             <Nav.Link as={Link}  to="/">home</Nav.Link>
             <Nav.Link as={Link} to="/menu">menu</Nav.Link>
