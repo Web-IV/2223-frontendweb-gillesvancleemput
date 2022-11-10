@@ -1,3 +1,9 @@
+
+*{
+  font-family: 'Josefin Sans', sans-serif;
+  overflow-x: hidden;
+  overflow-x: none;
+}
 .App {
   text-align: center;
 }
@@ -37,7 +43,11 @@
   }
 }
 .App {
-  background-color: white;
+  background: url(./images/SinSin_elementen5.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .Auth-form-container {
@@ -75,3 +85,8 @@ label {
   font-weight: 600;
   color: rgb(34, 34, 34);
 }
+.mt-10{
+  margin-top: 8rem;
+}
+
+

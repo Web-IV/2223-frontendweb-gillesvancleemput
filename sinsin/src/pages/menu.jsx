@@ -1,37 +1,43 @@
 import Navigationbar from "../components/Navbar";
 import { useState, useEffect, useCallback } from 'react'; 
-import * as Api from '../api/transactions'; 
+import * as Api from '../api/menuItems'; 
 import MenuItemCards from "../components/menuItemCardsBeschrijving";
-import image from "../images/SinSin_elementen5.png";
 import MenuCard from "../components/menuCard";
+import { useNavigate } from 'react-router-dom';
 
 
-const Menu = () => {
-    const [menuItems, setMenuItems] = useState([]); 
+
+export default function Menu(){
+    const [menuItems, setMenuItems] = useState([]);
+    let navigate = useNavigate();
+
+    const refreshTransactions = useCallback(async () => {
+      try {
+        const data = await Api.getAllMenuItems();
+        setMenuItems(data);
+      } catch (error) {
+        console.error(error);
+      } 
+    }, []);
 
     useEffect(() => {
-        const fetchTransactions = async () => {
-            const data = await Api.getAllMenuItems();
-            setMenuItems(data);
-            console.log(data);
-        };
-        fetchTransactions();
-    }, [menuItems]);
+      refreshTransactions();
+    }, [refreshTransactions]);
 
     const handleDelete = useCallback(async (idToDelete) => {
         try {
           await Api.deleteByIdMenu(idToDelete);
-          setMenuItems((menuItems) => menuItems.filter(({ id }) => id !== idToDelete)); // 👈 2
+          setMenuItems((menuItems) => menuItems.filter(({ id }) => id !== idToDelete));
         } catch (error) {
           console.error(error);
         }
       }, []);
 
-
     return ( 
       <>
-            <div className="menu" style={{backgroundImage:`url(${image}`} } >
+            <div className="menu">
                 <Navigationbar  />
+                <button  type="button" className="btn btn-danger  .25rem"   onClick={()=> navigate("/menu/additem")} >add item</button>
                 <h2>Burgers & Wraps</h2>
                 {menuItems.filter(item => item.type === 'Burgers & Wraps').map((item) => (
                     <MenuItemCards key={item.itemId} {...item} onDelete={handleDelete} />
@@ -44,10 +50,13 @@ const Menu = () => {
                 {menuItems.filter(item => item.type === 'To Add').map((item) => (
                     <MenuCard key={item.itemId} {...item} onDelete={handleDelete}/>
                 ))}
+                <h2>Drinks</h2>
+                {menuItems.filter(item => item.type === 'Drinks').map((item) => (
+                    <MenuCard key={item.itemId} {...item} onDelete={handleDelete}/>
+                ))}
 
             </div>
       </>
      );
 }
  
-export default Menu;

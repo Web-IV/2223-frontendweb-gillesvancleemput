@@ -29,6 +29,7 @@ export default memo(function MenuItemCards({
         </div>
         </div>
         <button  type="button" className="btn btn-danger  .25rem" onClick={handleDelete}>delete</button>
+        <button  type="button" className="btn btn-danger  .25rem" onClick={handleDelete}>delete</button>
         </div>
     );
         
