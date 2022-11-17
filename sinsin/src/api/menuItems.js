@@ -22,4 +22,8 @@ export const getByIdMenu = async (id) => {
   const data = await axios.get(`${baseUrl}menu/${id}`);
   return data.data;
 }
+export const updateMenuItemById = async (id, item) => {
+  const data = await axios.put(`${baseUrl}menu/${id}`, item);
+  return data.data;
+}
 

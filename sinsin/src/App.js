@@ -4,6 +4,7 @@ import Home from './pages/home';
 import Menu from './pages/Menu';
 import Login from './pages/login';
 import AddmenuItem from './pages/AddMenuItem';
+import Bestelling from './pages/Bestelling';
 import{ Routes, Route} from 'react-router-dom';
 import Navigationbar from './components/Navbar';
 
@@ -21,8 +22,9 @@ function App() {
       <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/menu/additem" element={<AddmenuItem />}/>
-            <Route path="/menu/edititem" element={<Menu />}/>
+            <Route path="/menu/edititem/:id" element={<AddmenuItem />}/>
             <Route path="/menu" element={<Menu />}/>
+            <Route path="/bestelling" element={<Bestelling />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="*" element={<h1>404</h1>}/>
       </Routes>

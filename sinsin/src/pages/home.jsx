@@ -1,4 +1,5 @@
-import logo from "../images/logo_sinsin-schild-wit-1-.png";
+import logo from "../images/sinsin_sinsin-schild-red.png";
+import logo2 from "../images/logo_sinsin-schild-wit-1-.png";
 import vegan from "../images/vegansinsin-150x150.png";
 import instagram from "../images/277-2773517_instagram-logo-white-logo-instagram-png-putih-transparent.png";
 import facebook from "../images/facebook-custom-audiences.png";
@@ -16,7 +17,7 @@ const Home = () => {
             </div> 
             <div>
             </div>
-            <div class="row pt-5">
+            <div className="row pt-5">
                     <div className="col-md-6" >
                         <h3 className="title fw-bold text-white pt-5 ">
                             summer<br/>pop-up
@@ -94,7 +95,7 @@ const Home = () => {
                 <div className="col-md-7">
                     <div className="row">
                         <div className="col-md-6 pt-5">
-                            <img alt="sin-sinlogo" src={logo} style={{ width:202 , height: 262}}/>
+                            <img alt="sin-sinlogo" src={logo2} style={{ width:202 , height: 262}}/>
                         </div>
                         <div className="col-md-6">
                             <h3 className="title fw-bold text-white">

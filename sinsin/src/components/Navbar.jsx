@@ -37,7 +37,7 @@ export default function Navigationbar(){
           <Nav >
             <Nav.Link className='text-white' as={Link}  to="/">home</Nav.Link>
             <Nav.Link className='text-white' as={Link} to="/menu">menu</Nav.Link>
-            <Nav.Link className='text-white' as={Link} to="/menu">bestelling</Nav.Link>
+            <Nav.Link className='text-white' as={Link} to="/bestelling">bestelling</Nav.Link>
             <Nav.Link className='text-white' as={Link} to="/login" >login</Nav.Link>
           </Nav>
         </Container>
