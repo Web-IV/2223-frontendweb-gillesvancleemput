@@ -22,8 +22,12 @@ export default memo(function MenuCards({
             localStorage.setItem("bestelling", "[]");
         }
         const old_data = JSON.parse(localStorage.getItem("bestelling"));
-        if(!old_data.includes(itemid)){
-            old_data.push(itemid);
+        const checkIds = [];
+        old_data.map((item) => {
+             return checkIds.push(item.itemId);
+        });
+        if(!checkIds.includes(itemid)){
+            old_data.push({"itemId":itemid,"aantal":1,"prijs":prijs});
         }
         localStorage.setItem("bestelling", JSON.stringify(old_data));
       }
@@ -33,7 +37,7 @@ export default memo(function MenuCards({
             <div className="card-body">
                 <h5 className="card-title">{naam} : €{prijs}</h5>
                 <hr className="solid"></hr>
-                <button  type="button" className="btn btn-info  .25rem" onClick={ () => Localstorage(itemId)}>add item</button>
+                <button  type="button" className="btn btn-info  .25rem" onClick={ () => Localstorage(itemId,prijs)}>add item</button>
             </div>
             </div>
             <div className="card-body">

@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { memo } from 'react';
-import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useCallback, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 
 
@@ -17,8 +16,45 @@ export default memo(function BestellingItem({
         event.preventDefault();
         onDelete(itemId);
       }, [itemId, onDelete]);
+
+      let [aantal, setAantal] = useState(0);
     
-    
+    const data = JSON.parse(localStorage.getItem("bestelling"));
+    data.filter((item) => {
+        if(item.itemId === itemId){
+            aantal = item.aantal;
+        }
+        return aantal;
+    });
+    const plusAantal = () => {
+        const data = JSON.parse(localStorage.getItem("bestelling"));
+        aantal = aantal + 1;
+        data.filter((item) => {
+            if(item.itemId === itemId){
+                item.aantal = aantal;
+            }
+            return item;
+        });
+        setAantal(aantal);
+        localStorage.setItem("bestelling", JSON.stringify(data));
+
+    };
+
+    const minAantal = () => {
+        const data = JSON.parse(localStorage.getItem("bestelling"));
+        if(aantal > 1){
+            aantal = aantal - 1;
+            data.filter((item) => {
+                if(item.itemId === itemId){
+                    item.aantal = aantal;
+                }
+                return item;
+            });
+            setAantal(aantal);
+            localStorage.setItem("bestelling", JSON.stringify(data));
+        }
+    };
+
 
     return ( 
         <div className="col-8 mx-5">
@@ -38,6 +74,15 @@ export default memo(function BestellingItem({
                                 <div className="col-md-4">
                                     <th><button  type="button" className="btn btn-danger  .25rem" onClick={handleDelete}>delete</button></th>
                                 </div>
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <button className="btn btn-dark btn-sm" onClick={plusAantal} >+</button>
+                                    </div>
+                                    <input type="number" id="qty_input" className="form-control form-control-sm" value={aantal} min="1"/>
+                                    <div className="input-group-prepend">
+                                        <button className="btn btn-dark btn-sm" onClick={minAantal}>-</button>
+                                    </div>
+                                </div>
                             </div>  
                         </div>
                     </tr>
@@ -46,6 +91,5 @@ export default memo(function BestellingItem({
             </div>
             </div>
         </div>   
-    );
-        
+    );    
 });
