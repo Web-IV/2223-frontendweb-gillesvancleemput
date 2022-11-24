@@ -10,6 +10,7 @@ export default memo(function BestellingItem({
     prijs,
     beschrijving,
     onDelete,
+    prijsbereken,
 }) 
 {
     const handleDelete = useCallback((event) => {
@@ -17,8 +18,9 @@ export default memo(function BestellingItem({
         onDelete(itemId);
       }, [itemId, onDelete]);
 
-      let [aantal, setAantal] = useState(0);
-    
+
+
+    let [aantal, setAantal] = useState(0);
     const data = JSON.parse(localStorage.getItem("bestelling"));
     data.filter((item) => {
         if(item.itemId === itemId){
@@ -37,7 +39,7 @@ export default memo(function BestellingItem({
         });
         setAantal(aantal);
         localStorage.setItem("bestelling", JSON.stringify(data));
-
+        prijsbereken();
     };
 
     const minAantal = () => {
@@ -52,6 +54,7 @@ export default memo(function BestellingItem({
             });
             setAantal(aantal);
             localStorage.setItem("bestelling", JSON.stringify(data));
+            prijsbereken();
         }
     };
 
@@ -78,7 +81,7 @@ export default memo(function BestellingItem({
                                     <div className="input-group-prepend">
                                         <button className="btn btn-dark btn-sm" onClick={plusAantal} >+</button>
                                     </div>
-                                    <input type="number" id="qty_input" className="form-control form-control-sm" value={aantal} min="1"/>
+                                    <input type="number" id="qty_input" className="form-control form-control-sm" value={aantal}  min="1"/>
                                     <div className="input-group-prepend">
                                         <button className="btn btn-dark btn-sm" onClick={minAantal}>-</button>
                                     </div>

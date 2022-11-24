@@ -10,7 +10,18 @@ import BestellingItem from '../components/bestellingItem';
 export default function Bestelling(){
     const [bestellingItems, setbestellingItems] = useState([]);
     const [totprijs, setTotprijs] = useState(0);
-    let userId = "f98b5c03-8589-4b04-8977-1edd0a931bd8";
+    const userId = "f98b5c03-8589-4b04-8977-1edd0a931bd8";
+
+    const prijs = useCallback(async () => {
+      const items = JSON.parse(localStorage.getItem("bestelling"));
+      console.log(items);
+      if(items){
+        setTotprijs(items.reduce((a, b) => a + b.prijs * b.aantal, 0));
+      }
+      else{
+        setTotprijs(0);
+      }
+    }, []);
 
     // let navigate = useNavigate();
     const refreshItems = useCallback(async () => {
@@ -23,13 +34,11 @@ export default function Bestelling(){
         });
         const result = data.filter(({ itemId }) => Ids.includes(itemId));
         setbestellingItems(result);
-        setTotprijs(items.reduce((a, b) => a + b.prijs * b.aantal, 0));
+        prijs();
       } catch (error) {
         console.error(error);
       } 
-    }, []);
-
-      
+    }, [prijs]);
 
     useEffect(() => {
       refreshItems();
@@ -46,11 +55,12 @@ export default function Bestelling(){
           items.splice(index, 1);
           localStorage.setItem('bestelling', JSON.stringify(items));
           refreshItems();
+          prijs();
 
         } catch (error) {
           console.error(error);
         }
-      }, [refreshItems]);
+      }, [refreshItems, prijs]);
 
     const create = useCallback(async () => {
       if(bestellingItems.length > 0){
@@ -60,20 +70,16 @@ export default function Bestelling(){
             delete element['prijs'];
             return element;
           });
-          userId = JSON.stringify(userId);
-          list = JSON.stringify(list);
-          console.log(userId);
-          console.log(list);
           await Api2.createBestelling(userId, list);
+          setbestellingItems([]);
           localStorage.removeItem("bestelling");
-          refreshItems();
+          prijs();
+
         } catch (error) {
           console.error(error);
         }
       }
-    }, [refreshItems, bestellingItems]);
-
-    
+    }, [bestellingItems, prijs]);
     return ( 
       <>
       <div className="container-fluid py-5 px-5 py-3">
@@ -90,7 +96,7 @@ export default function Bestelling(){
                                 <div className="card-body">
                                     {bestellingItems
                                         .map((item) => (
-                                            <BestellingItem key={item.itemId} {...item} onDelete={handleDelete} />
+                                            <BestellingItem key={item.itemId} {...item} onDelete={handleDelete} prijsbereken={prijs}  />
                                     ))}
                                 </div>
                                 <div className="text card-footer text-end px-5">
