@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { memo } from 'react';
 import { useCallback} from 'react';
-import {useNavigate, useState } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
 export default memo(function MenuItemCards({
@@ -32,21 +32,18 @@ export default memo(function MenuItemCards({
             old_data.push({"itemId":itemId,"aantal":1,"prijs":prijs});
         }
         localStorage.setItem("bestelling", JSON.stringify(old_data));
-        ('item toegevoegd aan de bestelling').alert();
       }
-      function Alert(){
-        alert('item toegevoegd aan de bestelling');
-    }
+
 
 
     return ( 
         <div className="col">
             <div className="card my-2">
             <div className="card-body">
-                <h5 className="card-title">{naam} : €{prijs}</h5>
+                <h5 className="card-title ">{naam} : €{prijs}</h5>
                 <p className="card-text">{beschrijving}</p>
                 <hr className="solid"></hr>
-                <button  type="button" className="btn btn-info  .25rem" onClick={ () => {Alert(); Localstorage(itemId,prijs);}} >winkelmand</button>
+                <button  type="button" className="btn btn-info  .25rem" onClick={ () => {Localstorage(itemId,prijs);}} >winkelmand</button>
             </div>
             </div>
             <div className="card-body">

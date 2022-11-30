@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { memo } from 'react';
 import { useCallback, useState } from 'react';
+import Container from 'react-bootstrap/esm/Container';
 import Table from 'react-bootstrap/Table';
 
 
@@ -25,6 +26,7 @@ export default memo(function BestellingItem({
     data.filter((item) => {
         if(item.itemId === itemId){
             aantal = item.aantal;
+            
         }
         return aantal;
     });
@@ -57,42 +59,40 @@ export default memo(function BestellingItem({
             prijsbereken();
         }
     };
-
-
-    return ( 
-        <div className="col-8 mx-5">
+        return (
             <div className="card my-2">
             <div className="card-body">
-            <Table className="striped bordered hover">
-                <thead>
-                    <tr>
-                        <div className="col-md-12">
-                            <div className="row">
-                                <div className="col-md-4">
-                                    <th ><h5 className="card-title">{naam}</h5></th>
-                                </div>
-                                <div className="col-md-4">
-                                    <th >€{prijs}</th>
-                                </div>
-                                <div className="col-md-4">
-                                    <th><button  type="button" className="btn btn-danger  .25rem" onClick={handleDelete}>delete</button></th>
-                                </div>
-                                <div className="input-group mb-3">
-                                    <div className="input-group-prepend">
-                                        <button className="btn btn-dark btn-sm" onClick={plusAantal} >+</button>
-                                    </div>
-                                    <input type="number" id="qty_input" className="form-control form-control-sm" value={aantal}  min="1"/>
-                                    <div className="input-group-prepend">
-                                        <button className="btn btn-dark btn-sm" onClick={minAantal}>-</button>
-                                    </div>
-                                </div>
-                            </div>  
+                <div className="container">
+                    <div className="row">
+                    <div className="col-sm-6 col-md-6 col-lg-3">
+                        <h5 className="card-title ">{naam}</h5>       
+                    </div>
+                    <div className="col-sm-6 col-md-6 col-lg-3">
+                        <h5 className="card-title ">€{prijs}</h5>
+                    </div>
+                    <div className="col-sm-6 col-md-6 col-lg-3">
+                        <div className="container">
+                        <div className="row">
+                            <div className="col-sm-4 col-md-4 col-lg-4">
+                                <button  type="button" className="btn btn-dark  .25rem" onClick={plusAantal} >+</button>
+                            </div>
+                            <div className="col-sm-4 col-md-4 col-lg-4">
+                                <h5 className="card-title ">{aantal}</h5>
+                            </div>
+                            <div className="col-sm-4 col-md-4 col-lg-4">
+                                <button  type="button" className="btn btn-dark  .25rem" onClick={minAantal} >-</button>
+                            </div>
                         </div>
-                    </tr>
-                </thead>
-            </Table>
+                        </div>
+                    </div>
+                    <div className="col-sm-6 col-md-6 col-lg-3">
+                        <button className="btn btn-danger btn-sm" onClick={handleDelete}>Verwijder</button>
+                    </div>
+                    </div>
+                </div>   
             </div>
             </div>
-        </div>   
-    );    
-});
+        
+        );
+    }
+);

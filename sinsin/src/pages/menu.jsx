@@ -4,7 +4,7 @@ import * as Api from '../api/menuItems';
 import MenuItemCards from "../components/menuItemCardsBeschrijving";
 import MenuCard from "../components/menuCard";
 import { useNavigate } from 'react-router-dom';
-import logo from "../images/sinsin_sinsin-schild-blue.png";
+
 
 
 export default function Menu(){
@@ -28,7 +28,6 @@ export default function Menu(){
         try {
           await Api.deleteByIdMenu(idToDelete);
           const newItems = menuItems.filter((item) => item.itemId !== idToDelete);
-          console.log(newItems);
           setMenuItems( newItems);
         } catch (error) {
           console.error(error);
@@ -41,13 +40,13 @@ export default function Menu(){
               <div className="container">            
                 <div className="row">
                   <div className="col d-flex flex-wrap justify-content-center">
-                    <img alt="sin sin logo" src={logo} style={{ width:242 , height: 314}} />
+                    <img alt="sin sin logo" src={"images/sinsin_sinsin-schild-blue.png"} style={{ width:242 , height: 314}} />
                     <h2 className="title py-5 fw-bold text-white">
                       Healty<br/>Food
                     </h2>
                   </div>
                 </div>
-                <button  type="button" className="btn btn-primary btn-lg .25rem"  onClick={()=> navigate("/menu/additem")} >add item</button>
+                <button  type="button" className="btn btn-primary btn-lg .25rem text-white"  onClick={()=> navigate("/menu/additem")} >add item</button>
                 <div className="row">
                     <div className="col-md-12" style={{height: 100}}>
                     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState} from 'react';
-import logo from "../images/sinsin_sinsin-schild-green.png";
+
 
 export default function Login(props) {
   let [authMode, setAuthMode] = useState("signin")
@@ -13,13 +13,6 @@ export default function Login(props) {
     return (
       <>
       <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-12">
-          <div className="col-md-12">
-            <img alt="sin sin logo" src={logo} style={{ width:202 , height: 262}} />
-          </div>
-        </div>
-      </div>
       <div className="row">
         <div className="col-md-12">
         <div className="Auth-form-container">
@@ -67,13 +60,6 @@ export default function Login(props) {
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-12">
-          <div className="row">
-            <div className="col-md-12">
-            <div className="col-md-12">
-            <img alt="sin sin logo" src={logo} style={{ width:202 , height: 262}} />
-          </div>
-            </div>
-          </div>
           <div className="row">
             <div className="col-md-12">
             <div className="Auth-form-container">

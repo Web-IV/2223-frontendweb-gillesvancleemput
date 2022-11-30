@@ -43,11 +43,15 @@
   }
 }
 .App {
-  background: url(./images/SinSin_elementen5.png) no-repeat center center fixed; 
+  background: url(../public/images/SinSin_elementen5.png) no-repeat center center fixed; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  
 }
 
 .Auth-form-container {

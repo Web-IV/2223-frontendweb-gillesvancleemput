@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import {Link} from "react-router-dom";
 import {useEffect, useRef,useState } from 'react';
-import navlogo from '../images/logo_navbar.png';
+
 
 
 
@@ -32,7 +32,7 @@ export default function Navigationbar(){
         <Navbar className='navbar fs-3 navbar-expand-md  .bg-transparent py-3  fixed-top' style={{ transition: '1s ease',backgroundColor: navBackground ? 'red' : 'transparent'}} >
         <Container>
           <div className="navbar-brand">
-            <img as={Link}  to="/"  src={navlogo} alt="..." height="120" />
+            <img as={Link}  to="/"  src={"images/logo_navbar.png"} alt="..." height="120" />
           </div>
           <Nav >
             <Nav.Link className='text-white' as={Link}  to="/">home</Nav.Link>
