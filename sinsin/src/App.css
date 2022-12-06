@@ -51,6 +51,11 @@
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
   
 }
 
@@ -92,5 +97,20 @@ label {
 .mt-10{
   margin-top: 8rem;
 }
+.footer{
+  margin-top:auto !important; 
+}
+.navbarText{
+  font-size: 2rem !important;
+}
+@media only screen and (max-width: 768px) {
+  .Collapse{
+    background-color: red;
+    }
+    .navbarbg{
+      background-color: red !important;
+    }
+}
+
 
 

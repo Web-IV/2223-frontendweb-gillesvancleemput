@@ -1,8 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { memo } from 'react';
 import { useCallback, useState } from 'react';
-import Container from 'react-bootstrap/esm/Container';
-import Table from 'react-bootstrap/Table';
+
 
 
 export default memo(function BestellingItem({

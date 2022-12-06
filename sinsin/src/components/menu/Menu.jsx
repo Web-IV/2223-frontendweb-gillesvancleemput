@@ -1,24 +1,24 @@
 
 import { useState, useEffect, useCallback } from 'react'; 
-import * as Api from '../api/menuItems'; 
-import MenuItemCards from "../components/menuItemCardsBeschrijving";
-import MenuCard from "../components/menuCard";
+import useMenuItems from '../../api/menuItems'; 
+import MenuItemCards from "../menu/menuItemCardsBeschrijving";
+import MenuCard from "../menu/menuCard";
 import { useNavigate } from 'react-router-dom';
-
 
 
 export default function Menu(){
     const [menuItems, setMenuItems] = useState([]);
+    const {deleteByIdMenu , getAllMenuItems} = useMenuItems();
     let navigate = useNavigate();
 
     const refreshItems = useCallback(async () => {
       try {
-        const data = await Api.getAllMenuItems();
+        const data = await getAllMenuItems();
         setMenuItems(data);
       } catch (error) {
         console.error(error);
       } 
-    }, []);
+    },  [getAllMenuItems]);
 
     useEffect(() => {
       refreshItems();
@@ -26,13 +26,13 @@ export default function Menu(){
 
     const handleDelete = useCallback(async (idToDelete) => {
         try {
-          await Api.deleteByIdMenu(idToDelete);
+          await deleteByIdMenu(idToDelete);
           const newItems = menuItems.filter((item) => item.itemId !== idToDelete);
           setMenuItems( newItems);
         } catch (error) {
           console.error(error);
         }
-      }, [menuItems]);
+      }, [menuItems , deleteByIdMenu]);
 
     return ( 
       <>
@@ -46,7 +46,7 @@ export default function Menu(){
                     </h2>
                   </div>
                 </div>
-                <button  type="button" className="btn btn-primary btn-lg .25rem text-white"  onClick={()=> navigate("/menu/additem")} >add item</button>
+                <button  type="button" className="btn btn-primary btn-lg .25rem text-white" onClick={()=> navigate("../../components/menu/menuForm")}>add item</button>
                 <div className="row">
                     <div className="col-md-12" style={{height: 100}}>
                     </div>
