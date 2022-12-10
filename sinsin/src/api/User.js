@@ -1,19 +1,40 @@
-import axios from 'axios'; // 👈 1
+import axios from "axios"; // 👈 1
 
-import { useCallback } from 'react';
+import { useCallback } from "react";
 
 const baseUrl = `http://localhost:9000/api/`;
 
-const useUser= () => {
-
-const getUserById = useCallback( async (Id) => {
+const useUser = () => {
+  const getUserById = useCallback(async (Id) => {
     const response = await axios.get(`${baseUrl}user/${Id}`);
     return response.data;
-}, []);
+  }, []);
 
-return {
-    getUserById
+  const getByAuth0Id = async (auth0id) => {
+    const { data } = await axios.get(`${baseUrl}user/${auth0id}`);
+    return { data };
+  };
+  const create = useCallback(async () => {
+    const response = await axios.post(`${baseUrl}user/`);
+    return response.data;
+  }, []);
+  const checkForUser = useCallback(async (auth0id) => {
+    const response = await axios.get(`${baseUrl}user/check/${auth0id}`);
+    return response.data;
+  }, []);
+
+  return {
+    getUserById,
+    create,
+    getByAuth0Id,
+    checkForUser,
+  };
 };
-}
 
 export default useUser;
+
+// export const getByAuth0Id = async (auth0id) => {
+//   const { data } = await axios.get(`${baseUrl}user/${auth0id}`);
+
+//   return data;
+// };

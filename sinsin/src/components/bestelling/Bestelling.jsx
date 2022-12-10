@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 import BestellingItem from "./bestellingItem";
 import useBestelling from "../../api/bestelling";
 import BestellingEmpty from "./bestellingEmpty";
+import BestellingModal from "./BestellingModal";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Bestelling() {
   const [bestellingItems, setbestellingItems] = useState([]);
   const [totprijs, setTotprijs] = useState(0);
   const { getAllMenuItems } = useMenuItems();
   const { createBestelling } = useBestelling();
-  const userId = "8e99e823-7270-475a-beaf-997afcabf5c4";
-  const Navigate = useNavigate();
 
   const prijs = useCallback(async () => {
     const items = JSON.parse(localStorage.getItem("bestelling"));
@@ -63,24 +63,6 @@ export default function Bestelling() {
     [refreshItems, prijs]
   );
 
-  const create = useCallback(async () => {
-    if (bestellingItems.length > 0) {
-      try {
-        let list = JSON.parse(localStorage.getItem("bestelling"));
-        list.map((element) => {
-          delete element["prijs"];
-          return element;
-        });
-        await createBestelling(userId, list);
-        setbestellingItems([]);
-        localStorage.removeItem("bestelling");
-        prijs();
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }, [bestellingItems, prijs, createBestelling, userId]);
-
   if (bestellingItems.length === 0) {
     return <BestellingEmpty />;
   }
@@ -108,13 +90,7 @@ export default function Bestelling() {
               </div>
               <div className="text card-footer text-end px-5">
                 <h3 className="pt-3">totaal prijs: ${totprijs}</h3>
-                <button
-                  type="button"
-                  className="text display-1 btn btn-info .25rem mb-3"
-                  onClick={create}
-                >
-                  verder naar bestelling
-                </button>
+                <BestellingModal prijs={totprijs} />
               </div>
             </div>
           </div>
