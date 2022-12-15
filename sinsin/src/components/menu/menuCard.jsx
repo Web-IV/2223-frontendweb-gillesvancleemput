@@ -1,10 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { memo } from "react";
-import { useCallback, useState, useEffect } from "react";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-import useUser from "../../api/User";
-import * as userApi from "../../api/User";
 
 export default memo(function MenuCards({
   itemId,
@@ -12,11 +9,9 @@ export default memo(function MenuCards({
   prijs,
   beschrijving,
   onDelete,
+  Rollen,
 }) {
   let navigate = useNavigate();
-  const { isAuthenticated, user } = useAuth0();
-  const [rol, setRol] = useState("");
-  const { getByAuth0Id } = useUser();
   const handleDelete = useCallback(
     (event) => {
       event.preventDefault();
@@ -57,7 +52,7 @@ export default memo(function MenuCards({
         </div>
       </div>
       <div className="card-body">
-        {rol === "admin" && (
+        {Rollen === "admin" && (
           <button
             type="button"
             className="btn btn-danger px-2  .25rem"
@@ -66,7 +61,7 @@ export default memo(function MenuCards({
             delete item
           </button>
         )}
-        {rol === "admin" && (
+        {Rollen === "admin" && (
           <button
             type="button"
             className="btn btn-warning px-2 .25rem"

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import useUser from "../../api/User";
 import * as userApi from "../../api/User";
+import { ToastContainer, toast } from "react-toastify";
 
 export default memo(function MenuItemCards({
   itemId,
@@ -12,11 +13,9 @@ export default memo(function MenuItemCards({
   prijs,
   beschrijving,
   onDelete,
+  Rollen,
 }) {
   let navigate = useNavigate();
-  const { isAuthenticated, user } = useAuth0();
-  const [rol, setRol] = useState("");
-  const { getByAuth0Id } = useUser();
 
   const handleDelete = useCallback(
     (event) => {
@@ -64,7 +63,7 @@ export default memo(function MenuItemCards({
         </div>
       </div>
       <div className="card-body">
-        {rol === "admin" && (
+        {Rollen === "admin" && (
           <button
             type="button"
             className="btn btn-danger px-2  .25rem"
@@ -73,7 +72,7 @@ export default memo(function MenuItemCards({
             delete item
           </button>
         )}
-        {rol === "admin" && (
+        {Rollen === "admin" && (
           <button
             type="button"
             className="btn btn-warning px-2 .25rem"

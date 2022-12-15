@@ -5,6 +5,7 @@ import MenuCard from "../menu/menuCard";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import useUser from "../../api/User";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Menu() {
   const [menuItems, setMenuItems] = useState([]);
@@ -27,11 +28,12 @@ export default function Menu() {
   const authCheck = useCallback(async () => {
     if (isAuthenticated) {
       const data = await checkForUser(user.sub);
-      console.log(data, "data");
       if (data === true) {
         try {
           const data = await getByAuth0Id(user.sub);
-          setRol(data.data.rol);
+          console.log(data.data.rol, "in try");
+          const rol = data.data.rol;
+          setRol(rol);
         } catch (error) {
           console.error(error);
         }
@@ -39,12 +41,12 @@ export default function Menu() {
         setRol("user");
       }
     }
-  }, [isAuthenticated, user, checkForUser, getByAuth0Id]);
+  }, [isAuthenticated, checkForUser, getByAuth0Id, user]);
 
   useEffect(() => {
     authCheck();
     refreshItems();
-  }, [refreshItems, authCheck]);
+  }, [refreshItems, authCheck, rol]);
 
   const handleDelete = useCallback(
     async (idToDelete) => {
@@ -105,6 +107,7 @@ export default function Menu() {
                         key={item.itemId}
                         {...item}
                         onDelete={handleDelete}
+                        Rollen={rol}
                       />
                     ))}
                 </div>
@@ -125,6 +128,7 @@ export default function Menu() {
                         key={item.itemId}
                         {...item}
                         onDelete={handleDelete}
+                        Rollen={rol}
                       />
                     ))}
                 </div>
@@ -148,6 +152,7 @@ export default function Menu() {
                         key={item.itemId}
                         {...item}
                         onDelete={handleDelete}
+                        Rollen={rol}
                       />
                     ))}
                 </div>
@@ -166,6 +171,7 @@ export default function Menu() {
                         key={item.itemId}
                         {...item}
                         onDelete={handleDelete}
+                        Rollen={rol}
                       />
                     ))}
                 </div>
@@ -190,6 +196,7 @@ export default function Menu() {
                         key={item.itemId}
                         {...item}
                         onDelete={handleDelete}
+                        Rollen={rol}
                       />
                     ))}
                 </div>
@@ -209,6 +216,7 @@ export default function Menu() {
                         key={item.itemId}
                         {...item}
                         onDelete={handleDelete}
+                        Rollen={rol}
                       />
                     ))}
                 </div>

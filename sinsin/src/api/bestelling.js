@@ -20,8 +20,17 @@ const useBestelling = () => {
     },
     [getAccessTokenSilently]
   );
+  const getAllBestellingen = useCallback(async () => {
+    const token = await getAccessTokenSilently();
+    const data = await axios.get(`${baseUrl}bestelling`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data.data;
+  }, [getAccessTokenSilently]);
+
   return {
     createBestelling,
+    getAllBestellingen,
   };
 };
 
