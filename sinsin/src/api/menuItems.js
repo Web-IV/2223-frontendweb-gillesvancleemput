@@ -2,7 +2,7 @@ import axios from "axios"; // 👈 1
 import { useAuth0 } from "@auth0/auth0-react";
 import { useCallback } from "react";
 
-const baseUrl = `http://localhost:9000/api/`;
+const baseUrl = `${process.env.REACT_APP_BASEURL}`;
 
 const useMenuItems = () => {
   const { getAccessTokenSilently } = useAuth0();
