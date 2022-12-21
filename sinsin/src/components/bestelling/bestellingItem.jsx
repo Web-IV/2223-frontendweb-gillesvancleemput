@@ -59,7 +59,7 @@ export default memo(function BestellingItem({
     <div className="card my-2">
       <div className="card-body">
         <div className="container">
-          <div className="row">
+          <div className="row row-cols-1 row-cols-xl ">
             <div className="col-sm-6 col-md-6 col-lg-3">
               <h5 className="card-title ">{naam}</h5>
             </div>
@@ -68,7 +68,7 @@ export default memo(function BestellingItem({
             </div>
             <div className="col-sm-6 col-md-6 col-lg-3">
               <div className="container">
-                <div className="row">
+                <div className="row row-cols-1 row-cols-xl-3 row-cols-sm-13">
                   <div className="col-sm-4 col-md-4 col-lg-4">
                     <button
                       type="button"

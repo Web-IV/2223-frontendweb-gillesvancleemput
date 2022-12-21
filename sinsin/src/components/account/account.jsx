@@ -19,8 +19,6 @@ export default function Account() {
     }
   }, [checkForUser, user.sub, setDb]);
 
-  console.log(user, "user");
-
   useEffect(() => {
     if (isAuthenticated) {
       getUser();

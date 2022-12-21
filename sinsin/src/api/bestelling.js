@@ -11,7 +11,7 @@ const useBestelling = () => {
     async (list, adres) => {
       const token = await getAccessTokenSilently();
       await axios.post(
-        `${baseUrl}bestelling`,
+        `${baseUrl}bestelling/`,
         { list, adres },
         {
           headers: { Authorization: `Bearer ${token}` },

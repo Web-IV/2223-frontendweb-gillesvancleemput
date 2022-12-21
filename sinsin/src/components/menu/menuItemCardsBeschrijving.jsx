@@ -43,17 +43,20 @@ export default memo(function MenuItemCards({
   }
 
   return (
-    <div className="col">
+    <div className="col" data-cy="menuItems">
       <div className="card my-2">
         <div className="card-body">
-          <h5 className="card-title ">
+          <h5 className="card-title " data-cy="item-naam,prijs">
             {naam} : €{prijs}
           </h5>
-          <p className="card-text">{beschrijving}</p>
+          <p className="card-text" data-cy="item-beschrijving">
+            {beschrijving}
+          </p>
           <hr className="solid"></hr>
           <button
             type="button"
             className="btn btn-info  .25rem"
+            data-cy="winkelmand"
             onClick={() => {
               Localstorage(itemId, prijs);
             }}
@@ -68,6 +71,7 @@ export default memo(function MenuItemCards({
             type="button"
             className="btn btn-danger px-2  .25rem"
             onClick={handleDelete}
+            data-cy="delete-item"
           >
             delete item
           </button>

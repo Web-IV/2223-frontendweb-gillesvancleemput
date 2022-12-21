@@ -1,7 +1,7 @@
-import { useAuth0, User } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const HistoryElement = ({ bestelling }) => {
-  const { isAuthenticated, user } = useAuth0();
+  const { user } = useAuth0();
   const str = bestelling.bestellingId;
   const date = bestelling.created_at;
   return (
@@ -16,7 +16,7 @@ const HistoryElement = ({ bestelling }) => {
               <h3>Bestelling id: {str.substring(0, 8)}... </h3>
             </div>
             <div className="col">
-              <h3>geplaatst door: {user.name}</h3>
+              <h3>besteld door: {user.name}</h3>
             </div>
             <div className="col">
               <h3>totaal prijs: {bestelling.prijs}</h3>

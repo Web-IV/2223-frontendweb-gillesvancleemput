@@ -15,7 +15,6 @@ const BestellingForm = ({ prijs }) => {
 
   const onSubmit = useCallback(
     async (data) => {
-      console.log("onsubmit");
       try {
         let list = JSON.parse(localStorage.getItem("bestelling"));
         list.map((element) => {
@@ -23,7 +22,6 @@ const BestellingForm = ({ prijs }) => {
           return element;
         });
         const { Email, Gemeente, Postcode, Straat, Huisnummer } = data;
-        console.log(Email, Gemeente, Postcode, Straat, Huisnummer);
         const adres = { Email, Gemeente, Postcode, Straat, Huisnummer };
         await createBestelling(list, adres);
         localStorage.removeItem("bestelling");

@@ -18,25 +18,19 @@ function BestellingModal({ prijs }) {
   const [kost, setKost] = useState(0);
 
   const check = useCallback(async () => {
-    console.log(isAuthenticated, "isAuthenticated");
-    console.log(user, "user");
     if (isAuthenticated) {
       const data = await checkForUser(user.sub);
-      console.log(data, "data");
       if (data === true) {
         setAanvullen(false);
       } else {
         setAanvullen(true);
       }
     }
-    console.log(aanvullen, "aanvullen");
-  }, [isAuthenticated, user, checkForUser, setAanvullen, aanvullen]);
+  }, [checkForUser, isAuthenticated, user.sub]);
 
   useEffect(() => {
     check();
     setKost(prijs);
-    console.log(kost, "kost");
-    console.log(prijs, "prijs");
   }, [check, prijs, kost]);
 
   return (
@@ -45,6 +39,7 @@ function BestellingModal({ prijs }) {
         type="button"
         className="text display-1 btn btn-info .25rem mb-3"
         onClick={handleShow}
+        data-cy="bestel"
       >
         verder naar bestelling
       </Button>

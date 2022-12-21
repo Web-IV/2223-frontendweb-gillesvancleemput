@@ -6,7 +6,7 @@ const Home = () => {
     <>
       <div className="home container pt-5">
         <div className="row justify-content-center">
-          <div className="col-md-12 col-sm-12 col-lg-12 pb-5">
+          <div className="col">
             <img
               alt="sin sin logo"
               src={"images/sinsin_sinsin-schild-red.png"}

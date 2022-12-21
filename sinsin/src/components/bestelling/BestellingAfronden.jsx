@@ -23,13 +23,11 @@ const BestellingAfronden = ({ prijs }) => {
       setStraat(data.data.straat);
       setHuisnummer(data.data.huisnummer);
       setGemeente(data.data.gemeente);
-      console.log(data.data);
     }
   }, [isAuthenticated, user, getByAuth0Id]);
 
   const onSubmit = useCallback(
     async (data) => {
-      console.log("onsubmit");
       try {
         let list = JSON.parse(localStorage.getItem("bestelling"));
         list.map((element) => {
@@ -51,6 +49,10 @@ const BestellingAfronden = ({ prijs }) => {
     getUserInfo();
   }, [prijs, getUserInfo]);
 
+  const wijzen = () => {
+    Navigate("/account");
+  };
+
   return (
     <>
       <div className="row">
@@ -62,12 +64,18 @@ const BestellingAfronden = ({ prijs }) => {
             <p className="h5">Huisnummer: {huisnummer}</p>
             <p className="h5">Postcode: {postcode}</p>
           </div>
-          <button className="btn btn-info">Adres weizigen</button>
+          <button className="btn btn-info" onClick={wijzen}>
+            Adres weizigen
+          </button>
         </div>
         <div className="col my-3 mt-5 text-center">
           <p className="card-header text-center h3">Totaal prijs:</p>
           <p className="h4 text-center">€{kost}</p>
-          <button className="btn btn-info mt-3" onClick={onSubmit}>
+          <button
+            className="btn btn-info mt-3"
+            onClick={onSubmit}
+            data-cy="Plaatsen"
+          >
             Bestelling Plaatsen
           </button>
         </div>

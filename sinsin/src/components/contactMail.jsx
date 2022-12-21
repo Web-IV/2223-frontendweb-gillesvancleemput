@@ -38,6 +38,7 @@ function Contact() {
         type="button"
         className="text display-1 btn btn-info .25rem mb-3"
         onClick={handleShow}
+        data-cy="contacteer-ons"
       >
         Contacteer ons
       </Button>

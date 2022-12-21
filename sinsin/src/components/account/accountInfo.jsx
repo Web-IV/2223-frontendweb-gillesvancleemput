@@ -68,7 +68,7 @@ export default function AccountEmpty() {
                 </div>
               </div>
               <div className="row justify-content-center">
-                <div className="card mb-3 mx-auto w-50">
+                <div className="card mb-3 mx-auto w-70">
                   <div className="row justify-content-center my-4">
                     <div className="col-md-6 text-start">
                       <h4 className="mt-2">Email: {email}</h4>

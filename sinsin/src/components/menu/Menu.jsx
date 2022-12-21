@@ -31,7 +31,6 @@ export default function Menu() {
       if (data === true) {
         try {
           const data = await getByAuth0Id(user.sub);
-          console.log(data.data.rol, "in try");
           const rol = data.data.rol;
           setRol(rol);
         } catch (error) {
@@ -83,6 +82,7 @@ export default function Menu() {
             <button
               type="button"
               className="btn btn-primary btn-lg .25rem text-white"
+              data-cy="add-item"
               onClick={() => navigate("../../components/menu/menuForm")}
             >
               add item

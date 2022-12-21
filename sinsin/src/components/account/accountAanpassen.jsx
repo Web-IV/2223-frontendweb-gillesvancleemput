@@ -7,6 +7,7 @@ import Modal from "react-bootstrap/Modal";
 
 const Aanpassen = ({ email, straat, huisnummer, postcode, gemeente }) => {
   const [show, setShow] = useState(false);
+  const Navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -21,17 +22,16 @@ const Aanpassen = ({ email, straat, huisnummer, postcode, gemeente }) => {
 
   const onSubmit = useCallback(
     async (data) => {
-      console.log("onsubmit");
       try {
         const { Gemeente, Postcode, Straat, Huisnummer } = data;
         await updateUser(email, Straat, Huisnummer, Postcode, Gemeente);
-        console.log("update uitgevoerd");
         setShow(false);
       } catch (error) {
         console.error(error);
       }
+      Navigate("/");
     },
-    [email, updateUser]
+    [email, updateUser, Navigate]
   );
 
   useEffect(() => {

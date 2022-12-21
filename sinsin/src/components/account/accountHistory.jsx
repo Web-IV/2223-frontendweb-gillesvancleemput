@@ -17,12 +17,9 @@ const History = () => {
   useEffect(() => {
     const fetchBestellingen = async () => {
       try {
-        console.log("fetch bestellingen");
         const bestellingen = await getAllBestellingen();
-        console.log(bestellingen, "bestellingen");
         setBestellingen(bestellingen);
       } catch (error) {
-        console.log("error");
         console.error(error);
       }
     };
@@ -34,6 +31,7 @@ const History = () => {
         type="button"
         className="text display-5 btn btn-info .25rem mb-3"
         onClick={handleShow}
+        data-cy="history"
       >
         Bestel geschiedenis
       </Button>

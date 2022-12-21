@@ -27,7 +27,6 @@ const AddmenuItem = () => {
           beschrijving,
         });
       } else {
-        console.log(naam, prijs, type, beschrijving);
         await updateMenuItemById(id, {
           naam,
           prijs,
@@ -42,7 +41,6 @@ const AddmenuItem = () => {
   };
   useEffect(() => {
     if (!id) {
-      console.log("reset");
       reset();
       return;
     }
@@ -77,6 +75,7 @@ const AddmenuItem = () => {
                 type="text"
                 className="form-control"
                 placeholder="naam"
+                data-cy="naam_input"
               />
               <label htmlFor="naam" className="form-label">
                 Naam
@@ -94,7 +93,7 @@ const AddmenuItem = () => {
                 type="number"
                 className="form-control"
                 placeholder="prijs"
-                required
+                data-cy="prijs_input"
                 min={0}
               />
               <label htmlFor="prijs" className="form-label">
@@ -111,7 +110,7 @@ const AddmenuItem = () => {
                 {...register("type", { required: true })}
                 id="type"
                 className="form-control"
-                required
+                data-cy="type_input"
                 onChange={(e) => setSelectBox(e.target.value)}
               >
                 <option value="">Kies een type</option>
@@ -141,7 +140,7 @@ const AddmenuItem = () => {
                   type="text"
                   className="form-control"
                   placeholder="beschrijving"
-                  required
+                  data-cy="beschrijving_input"
                 />
                 <label htmlFor="beschrijving" className="form-label">
                   Beschrijving
@@ -155,7 +154,11 @@ const AddmenuItem = () => {
             ) : (
               ""
             )}
-            <button type="submit" className="text-white btn btn-primary">
+            <button
+              type="submit"
+              data-cy="submitMenu"
+              className="text-white btn btn-primary"
+            >
               {id ? "Edit" : "Add"}
             </button>
           </form>
