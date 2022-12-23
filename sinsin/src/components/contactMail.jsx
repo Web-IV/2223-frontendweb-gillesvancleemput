@@ -2,12 +2,15 @@ import React, { useCallback, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import emailjs from "@emailjs/browser";
+import { useNavigate } from "react-router-dom";
 
 function Contact() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const Navigate = useNavigate();
 
   const form = useRef();
 
@@ -30,6 +33,7 @@ function Contact() {
         }
       );
     e.target.reset();
+    setShow(false);
   };
 
   return (
